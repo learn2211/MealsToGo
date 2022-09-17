@@ -8,7 +8,7 @@ const SearchArea = styled.View`
   background-color: ${(props) => props.theme.colors.bg.secondary};
 `;
 
-export const Search = () => {
+export const Search = ({ isFavoriteToggle, onFavoriteToggled }) => {
   const { searchKey, search } = useContext(LocationContext);
   const [searchText, setSearchText] = useState(searchKey);
 
@@ -20,7 +20,9 @@ export const Search = () => {
     <SearchArea>
       <Searchbar
         placeholder="Search the location"
+        icon={isFavoriteToggle ? "heart" : "heart-outline"}
         value={searchText}
+        onIconPress={onFavoriteToggled}
         onSubmitEditing={() => {
           search(searchText);
         }}
